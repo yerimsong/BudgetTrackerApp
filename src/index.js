@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import "bootstrap/dist/css/bootstrap.css";
-import Item from './components/item';
+import Item from './components/newitem';
 
-function Welcome() {
-  return <Item />;
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-const element = <Welcome />;
-root.render(element);
+const root = ReactDOMClient.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Item />
+  </React.StrictMode>
+);
