@@ -1,44 +1,79 @@
 import React, { Component } from 'react';
 
-class Item extends Component {
+class NewItem extends Component {
     state = { 
-        count: 0
+        name: '',
+        cost: '',
+        date: '',
+        category: ''
     };
 
-    handleIncrement = () => {
-        console.log("Increment clicked", this);
+    handleAddItem = (e) => {
+        e.preventDefault();
+        const name = this.state.name;
+        const cost = this.state.cost;
+        const date = this.state.date;
+        const category = this.state.category;
+        this.setState({
+            name: '',
+            cost: '',
+            date: '',
+            category: '',
+        });
+        console.log("Add clicked", this);
+        console.log(name, cost, date, category);
+    }
+
+    handleNameChange = (e) => {
+        this.setState({
+            name: e.target.value
+        });
+    }
+
+    handleCostChange = (e) => {
+        this.setState({
+            cost: e.target.value
+        });
+    }
+
+    handleDateChange = (e) => {
+        this.setState({
+            date: e.target.value
+        });
+    }
+
+    handleCategoryChange = (e) => {
+        this.setState({
+            category: e.target.value
+        });
     }
 
     render() { 
         return (
             <div>
-                <h1>Hello, Yerim</h1>
                 <form>
                     <label>Add a new item:</label>
                     <div className="row">
                         <div className="col-md-2">
                             {/* <label htmlFor="inputName">Item Name</label> */}
-                            <input type="text" className="form-control" placeholder="ex. Groceries" />
+                            <input type="text" className="form-control" placeholder="ex. Groceries" onChange={this.handleNameChange} value={this.state.name} />
                         </div>
                         <div className="col-md-2">
-                            {/* <label htmlFor="inputCost">Cost</label> */}
-                            <input type="text" className="form-control" placeholder="ex. 60.78" />
+                            <input type="text" className="form-control" placeholder="ex. 60.78" onChange={this.handleCostChange} value={this.state.cost} />
                         </div>
                         <div className="col-md-2">
-                            {/* <label htmlFor="inputDate">Date</label> */}
-                            <input type="text" className="form-control" placeholder="ex. 03/15/2023" />
+                            <input type="text" className="form-control" placeholder="ex. 03/15/2023" onChange={this.handleDateChange} value={this.state.date} />
                         </div>
                         <div className="col-md-2">
-                            {/* <label htmlFor="selectCategory">Category</label> */}
-                            <select className="form-select">
+                            <select className="form-select" onChange={this.handleCategoryChange} value={this.state.category} >
                                 <option value="None">None</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="Food">Food</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Shopping">Shopping</option>
                             </select>
                         </div>
                         <div className="col-md-2">
-                            <button type="submit" className="btn btn-primary">Add</button>
+                            <button type="submit" onClick={this.handleAddItem} className="btn btn-primary">Add</button>
                         </div>
                     </div>
                 </form>
@@ -47,4 +82,4 @@ class Item extends Component {
     }
 }
  
-export default Item;
+export default NewItem;
